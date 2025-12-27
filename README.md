@@ -1,3 +1,3 @@
 # GraphLearning
-**A table is worth A Graph**
-Another way of feature extraction for tabular datasets.
+**A table is worth A Graph**<br>
+Another solution for traditional tabular data machine learning tasks.<br>
