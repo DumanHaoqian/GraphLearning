@@ -43,9 +43,6 @@ Two graph settings are supported:
   Built from both training and test samples, where test nodes remain unlabeled during training,
   enabling structure-aware inference without label leakage.
 
-<p align="center">
-  <img src="Figs/graphs.png" width="700">
-</p>
 
 This graph representation serves as the foundation for all subsequent graph learning modules.
 
