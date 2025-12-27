@@ -141,38 +141,46 @@ MAGI unifies multiple traversal mechanisms under this framework:
 
 #### 1. Breadth-First Search (BFS)
 BFS defines a deterministic traversal where nodes are grouped by shortest-path distance from the root:
+
 $$
 \mathcal{L}_k^{(r)} = \{v \in V \mid \text{dist}(r,v)=k\}
 $$
+
 BFS yields low-variance, locality-preserving estimates and is effective on homophilic graphs.
 
 #### 2. Depth-First Search (DFS)
 DFS induces path-based traversals $\pi^{(r)} = (r, v_1, v_2, \dots)$. The golden memory accumulation reduces to a path-weighted sum emphasizing long-range dependencies:
+
 $$
 M_r = \sum_{k=0}^{K_r} \phi^k \, y_{\pi_k} \prod_{j=1}^{k} A_{\pi_{j-1}\pi_j}
 $$
 
 #### 3. Stochastic Hill Climbing (SHC)
 SHC defines a stochastic traversal guided by edge weights. The transition probability is defined as:
+
 $$
 P_{\text{SHC}}(v \mid u) = \frac{\exp(A_{uv}/T)}{\sum_{z \in \mathcal{N}(u)} \exp(A_{uz}/T)}
 $$
+
 where $T>0$ is a temperature controlling the exploration–exploitation trade-off.
 
 #### 4. Simulated Annealing (SA)
 SA extends SHC by introducing a depth-dependent temperature schedule $T_k = T_0 \gamma^k$. A proposed transition $u \rightarrow v$ is accepted with probability:
+
 $$
 P_{\text{SA}}(u \rightarrow v) = \exp\!\left(\frac{A_{uv}-1}{T_k}\right)
 $$
+
 This allows early exploration of weak edges and increasingly selective traversal at deeper steps.
 
 #### 5. Random Walk with Restart (RWR)
 RWR defines a Markovian traversal with restart probability $\alpha \in (0,1)$. At each step:
+
 $$
 P(\pi_{k+1}=v \mid \pi_k=u) = \begin{cases} \alpha, & v = r, \\ (1-\alpha)\dfrac{A_{uv}}{\sum_{z} A_{uz}}, & v \in \mathcal{N}(u). \end{cases}
 $$
-The golden memory reduces to an empirical estimate of the expected label: $M_r \approx \mathbb{E}_{v \sim \pi_r^{(\alpha)}}[y_v]$.
 
+The golden memory reduces to an empirical estimate of the expected label: $M_r \approx \mathbb{E}_{v \sim \pi_r^{(\alpha)}}[y_v]$.
 ---
 
 ## 4. Experimental Results and Analysis
